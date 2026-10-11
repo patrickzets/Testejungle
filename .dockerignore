@@ -1,0 +1,16 @@
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+*.md
+docs/
+deploy/
+compose.yaml
+compose.*.yaml
+Makefile
+bin/
+*.exe
+.idea/
+.vscode/
+coverage.out

@@ -1,0 +1,107 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: wagering-postgres
+    environment:
+      POSTGRES_DB: wagering
+      POSTGRES_USER: wagering
+      POSTGRES_PASSWORD: wagering
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wagering -d wagering"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  migrate:
+    image: migrate/migrate:v4.17.1
+    container_name: wagering-migrate
+    restart: "no"
+    volumes:
+      - ./migrations:/migrations:ro
+    command:
+      - "-path=/migrations"
+      - "-database=postgres://wagering:wagering@postgres:5432/wagering?sslmode=disable"
+      - "up"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.1
+    container_name: wagering-keycloak
+    command:
+      - "start-dev"
+      - "--import-realm"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_HEALTH_ENABLED: "true"
+      KC_METRICS_ENABLED: "true"
+      KC_HOSTNAME: "http://localhost:8080"
+      KC_HOSTNAME_BACKCHANNEL_DYNAMIC: "false"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./deploy/keycloak/wagering-realm.json:/opt/keycloak/data/import/wagering-realm.json:ro
+    healthcheck:
+      test: ["CMD", "/bin/bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/9000 && echo -e 'GET /health/ready HTTP/1.1\\r\\nHost: localhost\\r\\nConnection: close\\r\\n\\r\\n' >&3 && cat <&3 | grep -q '200 OK'"]
+      interval: 5s
+      timeout: 5s
+      retries: 25
+      start_period: 15s
+
+  localstack:
+    image: localstack/localstack:3.8
+    container_name: wagering-localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=sqs
+      - AWS_DEFAULT_REGION=us-east-1
+    volumes:
+      - ./deploy/localstack:/etc/localstack/init/ready.d:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 10s
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000-8002:8000"
+    environment:
+      DATABASE_URL: "postgres://wagering:wagering@postgres:5432/wagering?sslmode=disable"
+      HTTP_ADDR: ":8000"
+      AWS_ENDPOINT_URL: "http://localstack:4566"
+      AWS_REGION: "us-east-1"
+      AWS_ACCESS_KEY_ID: "test"
+      AWS_SECRET_ACCESS_KEY: "test"
+      WAGER_QUEUE_URL: "http://localstack:4566/000000000000/wager-transactions.fifo"
+      WAGER_DLQ_URL: "http://localstack:4566/000000000000/wager-transactions-dlq.fifo"
+      EVENTS_QUEUE_URL: "http://localstack:4566/000000000000/wager-events.fifo"
+      OIDC_ISSUER_URL: "http://localhost:8080/realms/wagering"
+      OIDC_JWKS_URL: "http://keycloak:8080/realms/wagering/protocol/openid-connect/certs"
+      OIDC_AUDIENCE: "wagering-api"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+      keycloak:
+        condition: service_healthy
+      localstack:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

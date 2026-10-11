@@ -1,0 +1,22 @@
+# Binaries and build outputs
+/bin/
+/wagering
+/wagering.exe
+*.exe
+
+# Environment files
+.env
+!.env.example
+
+# Test outputs
+*.test
+coverage.out
+coverage.html
+
+# IDEs and OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
