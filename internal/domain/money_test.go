@@ -6,7 +6,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/patrickkaua/wagering/internal/domain"
+	"github.com/patrickzets/Testejungle/internal/domain"
 )
 
 func TestParseMoney(t *testing.T) {

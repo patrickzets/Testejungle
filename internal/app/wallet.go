@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/patrickkaua/wagering/internal/domain"
+	"github.com/patrickzets/Testejungle/internal/domain"
 )
 
 const (

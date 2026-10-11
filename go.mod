@@ -1,4 +1,4 @@
-module github.com/patrickkaua/wagering
+module github.com/patrickzets/Testejungle
 
 go 1.27
 

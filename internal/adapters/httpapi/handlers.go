@@ -5,9 +5,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/patrickkaua/wagering/internal/app"
-	"github.com/patrickkaua/wagering/internal/auth"
-	"github.com/patrickkaua/wagering/internal/domain"
+	"github.com/patrickzets/Testejungle/internal/app"
+	"github.com/patrickzets/Testejungle/internal/auth"
+	"github.com/patrickzets/Testejungle/internal/domain"
 )
 
 type createWalletRequest struct {

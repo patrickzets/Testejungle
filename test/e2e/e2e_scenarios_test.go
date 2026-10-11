@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/patrickkaua/wagering/internal/domain"
+	"github.com/patrickzets/Testejungle/internal/domain"
 )
 
 // Scenario 1: Same BET sent 50 times in parallel over HTTP

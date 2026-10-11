@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/patrickkaua/wagering/internal/domain"
+	"github.com/patrickzets/Testejungle/internal/domain"
 )
 
 func brl(minor int64) domain.Money {

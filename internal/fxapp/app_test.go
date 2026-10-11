@@ -6,8 +6,8 @@ import (
 
 	"go.uber.org/fx"
 
-	"github.com/patrickkaua/wagering/internal/fxapp"
-	"github.com/patrickkaua/wagering/internal/platform"
+	"github.com/patrickzets/Testejungle/internal/fxapp"
+	"github.com/patrickzets/Testejungle/internal/platform"
 )
 
 func TestCompositionGraphIsValid(t *testing.T) {

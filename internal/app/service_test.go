@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/patrickkaua/wagering/internal/app"
-	"github.com/patrickkaua/wagering/internal/domain"
+	"github.com/patrickzets/Testejungle/internal/app"
+	"github.com/patrickzets/Testejungle/internal/domain"
 )
 
 type memStore struct {

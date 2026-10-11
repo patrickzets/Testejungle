@@ -14,12 +14,12 @@ import (
 	"go.uber.org/fx"
 	"go.uber.org/fx/fxevent"
 
-	"github.com/patrickkaua/wagering/internal/adapters/httpapi"
-	"github.com/patrickkaua/wagering/internal/adapters/postgres"
-	sqsadapter "github.com/patrickkaua/wagering/internal/adapters/sqs"
-	"github.com/patrickkaua/wagering/internal/app"
-	"github.com/patrickkaua/wagering/internal/auth"
-	"github.com/patrickkaua/wagering/internal/platform"
+	"github.com/patrickzets/Testejungle/internal/adapters/httpapi"
+	"github.com/patrickzets/Testejungle/internal/adapters/postgres"
+	sqsadapter "github.com/patrickzets/Testejungle/internal/adapters/sqs"
+	"github.com/patrickzets/Testejungle/internal/app"
+	"github.com/patrickzets/Testejungle/internal/auth"
+	"github.com/patrickzets/Testejungle/internal/platform"
 )
 
 // New composes the application. Options let tests replace or add components.

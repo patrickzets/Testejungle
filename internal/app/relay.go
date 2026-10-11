@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/patrickkaua/wagering/internal/domain"
+	"github.com/patrickzets/Testejungle/internal/domain"
 )
 
 type EventPublisher interface {

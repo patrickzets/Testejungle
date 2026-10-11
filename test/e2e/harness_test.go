@@ -23,9 +23,9 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	internalsqs "github.com/patrickkaua/wagering/internal/adapters/sqs"
-	"github.com/patrickkaua/wagering/internal/domain"
-	internalplatform "github.com/patrickkaua/wagering/internal/platform"
+	internalsqs "github.com/patrickzets/Testejungle/internal/adapters/sqs"
+	"github.com/patrickzets/Testejungle/internal/domain"
+	internalplatform "github.com/patrickzets/Testejungle/internal/platform"
 )
 
 const (
@@ -62,7 +62,7 @@ func TestMain(m *testing.M) {
 	}
 	binaryPath = filepath.Join(tempDir, binName)
 
-	buildCmd := exec.Command("go", "build", "-o", binaryPath, "github.com/patrickkaua/wagering/cmd/wagering")
+	buildCmd := exec.Command("go", "build", "-o", binaryPath, "github.com/patrickzets/Testejungle/cmd/wagering")
 	buildCmd.Stdout = os.Stdout
 	buildCmd.Stderr = os.Stderr
 	if err := buildCmd.Run(); err != nil {

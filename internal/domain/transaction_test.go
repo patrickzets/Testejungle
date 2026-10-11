@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/patrickkaua/wagering/internal/domain"
+	"github.com/patrickzets/Testejungle/internal/domain"
 )
 
 func operation(kind domain.Kind, minor int64) domain.ExternalOperation {

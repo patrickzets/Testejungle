@@ -10,7 +10,7 @@ import (
 	awssqs "github.com/aws/aws-sdk-go-v2/service/sqs"
 	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
 
-	"github.com/patrickkaua/wagering/internal/platform"
+	"github.com/patrickzets/Testejungle/internal/platform"
 )
 
 // NewClient creates an AWS SQS client configured from platform.Config.

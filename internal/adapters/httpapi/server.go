@@ -10,9 +10,9 @@ import (
 	"runtime/debug"
 	"time"
 
-	"github.com/patrickkaua/wagering/internal/app"
-	"github.com/patrickkaua/wagering/internal/auth"
-	"github.com/patrickkaua/wagering/internal/platform"
+	"github.com/patrickzets/Testejungle/internal/app"
+	"github.com/patrickzets/Testejungle/internal/auth"
+	"github.com/patrickzets/Testejungle/internal/platform"
 )
 
 // HealthCheck is a named readiness probe.

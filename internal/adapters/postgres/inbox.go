@@ -7,7 +7,7 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/patrickkaua/wagering/internal/app"
+	"github.com/patrickzets/Testejungle/internal/app"
 )
 
 type InboxRepository struct {

@@ -15,9 +15,9 @@ import (
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/patrickkaua/wagering/internal/adapters/postgres"
-	"github.com/patrickkaua/wagering/internal/app"
-	"github.com/patrickkaua/wagering/internal/domain"
+	"github.com/patrickzets/Testejungle/internal/adapters/postgres"
+	"github.com/patrickzets/Testejungle/internal/app"
+	"github.com/patrickzets/Testejungle/internal/domain"
 )
 
 func getDatabaseURL(t *testing.T) string {
